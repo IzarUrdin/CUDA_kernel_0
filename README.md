@@ -1,4 +1,5 @@
-# Is a GPU really more powerfull than a CPU? [closed by CUDA inquisition]
+# Is a GPU really more powerfull than a CPU? 
+[closed by CUDA inquisition]
 
 Copied from my answer at [Stackoverflow](https://stackoverflow.com/questions/59567162/is-a-gpu-really-more-powerfull-than-a-cpu) on 2nd, January of 2020th.
 
