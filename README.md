@@ -20,6 +20,9 @@ After a few hours checking what I was doing wrong, the conclusion is that CUDA i
 
 I followed the code of Marc Gravell published [here][1]; adding a new kernel for search and some code to test in main sub. You can get it from my GitHub [CUDA_kernel_0][2].
 
+*** EDIT 2: *** 
+
+Since yesterday I have been investigating and trying to understand what I was doing wrong, and now I can say that my GPU can works 500 times faster than my CPU; but always working alone. Initializing and finalizing a task have a hard cost so tasks must be large enough to compensate for this cost and furthermore they must be carefully coded. The last commit has an example (test_1) of how to check the performance of the GPU against CPU. Have fun :)
 
   [1]: https://github.com/mgravell/SimpleCUDAExample/tree/master/Demo
   [2]: https://github.com/IzarUrdin/CUDA_kernel_0
