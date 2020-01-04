@@ -36,38 +36,34 @@
     <Prefer32Bit>false</Prefer32Bit>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CudaBlas, Version=7.5.7.0, Culture=neutral, PublicKeyToken=539d54d12e99fedb, processorArchitecture=AMD64">
-      <HintPath>..\packages\ManagedCuda-75-x64.7.5.7\lib\net45\x64\CudaBlas.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="ManagedCuda, Version=10.0.31.0, Culture=neutral, PublicKeyToken=242d898828717aa0, processorArchitecture=MSIL">
+      <HintPath>..\packages\ManagedCuda-100.10.0.31\lib\net45\ManagedCuda.dll</HintPath>
     </Reference>
-    <Reference Include="CudaFFT, Version=7.5.7.0, Culture=neutral, PublicKeyToken=f066edfa1acb2f23, processorArchitecture=AMD64">
-      <HintPath>..\packages\ManagedCuda-75-x64.7.5.7\lib\net45\x64\CudaFFT.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="CudaRand, Version=7.5.7.0, Culture=neutral, PublicKeyToken=fe981579f4e9a066, processorArchitecture=AMD64">
-      <HintPath>..\packages\ManagedCuda-75-x64.7.5.7\lib\net45\x64\CudaRand.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="CudaSolve, Version=7.5.7.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\ManagedCuda-75-x64.7.5.7\lib\net45\x64\CudaSolve.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="CudaSparse, Version=7.5.7.0, Culture=neutral, PublicKeyToken=f65ee2ae6b331585, processorArchitecture=AMD64">
-      <HintPath>..\packages\ManagedCuda-75-x64.7.5.7\lib\net45\x64\CudaSparse.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ManagedCuda, Version=7.5.7.0, Culture=neutral, PublicKeyToken=242d898828717aa0, processorArchitecture=MSIL">
-      <HintPath>..\packages\ManagedCuda-75-x64.7.5.7\lib\net45\x64\ManagedCuda.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NPP, Version=7.5.7.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\ManagedCuda-75-x64.7.5.7\lib\net45\x64\NPP.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NVRTC, Version=7.5.7.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\ManagedCuda-75-x64.7.5.7\lib\net45\x64\NVRTC.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NVRTC, Version=10.0.31.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\ManagedCuda-NVRTC.10.0.31\lib\net45\NVRTC.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
@@ -82,6 +78,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ManagedCode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -89,6 +86,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
