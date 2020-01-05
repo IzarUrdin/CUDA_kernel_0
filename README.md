@@ -24,5 +24,13 @@ I followed the code of Marc Gravell published [here][1]; adding a new kernel for
 
 Since yesterday I have been investigating and trying to understand what I was doing wrong, and now I can say that my GPU can works 500 times faster than my CPU; but always working alone. Initializing and finalizing a task have a hard cost so tasks must be large enough to compensate for this cost and furthermore they must be carefully coded. The last commit has an example (test_1) of how to check the performance of the GPU against CPU. Have fun :)
 
+*** EDIT 3: ***
+
+Finally I have fix some things in the kernel and the result is that GPU is about 10 times faster than my [i7-6700HQ][3] CPU with 8 thread-cores. You can see the output of this results [here][4]. Furthermore it shows that the GPU GeForce 940M can works only in 32 thread-cores at most.
+
+
+
   [1]: https://github.com/mgravell/SimpleCUDAExample/tree/master/Demo
   [2]: https://github.com/IzarUrdin/CUDA_kernel_0
+  [3]: https://ark.intel.com/content/www/us/en/ark/products/88967/intel-core-i7-6700hq-processor-6m-cache-up-to-3-50-ghz.html
+  [4]: https://drive.google.com/open?id=0B7QWOKKwUGerRmtfNmY1c2NpOW1veTBSTGp2aWJhZzBVQlc4
