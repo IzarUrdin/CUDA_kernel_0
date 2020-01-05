@@ -26,7 +26,7 @@ Since yesterday I have been investigating and trying to understand what I was do
 
 *** EDIT 3: ***
 
-Finally I have fix some things in the kernel and the result is that GPU is about 10 times faster than my [i7-6700HQ][3] CPU with 8 thread-cores. You can see the output of this results [here][4]. Furthermore it shows that the GPU GeForce 940M can works only in 32 thread-cores at most.
+Finally I have fixes some things in the kernel and the result is that GPU is about 10 times faster than my [i7-6700HQ][3] CPU with 8 thread-cores. You can see the output of this results [here][4]. Furthermore it shows that the GPU GeForce 940M can works only in 32 thread-cores at most.
 
 
 
