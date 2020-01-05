@@ -29,12 +29,13 @@ namespace Demo
                 {
                     Console.WriteLine($"{i}: {CudaContext.GetDeviceName(i)}");
                 }
-                for (int z = 0; z < 1; z++)
+
+                for (int z = 100000; z < 100000*3000; z = z*2)
                 {
-                    for (int a = 1; a < 10; a++)
+                    for (int a = 1; a < 2; a++)
                     {
-                        Console.WriteLine("GridDim:" + a);
-                        using (var myGPU = new GPU(deviceId: 0, _count: 192*a))
+                        Console.WriteLine($"GridDim:{a} n:{z/1000000} MM");
+                        using (var myGPU = new GPU(deviceId: 0, _count: 1024*a))
                         {
                             // Console.WriteLine("Initializing kernel...");
                             string log;
@@ -50,7 +51,7 @@ namespace Demo
 
                             //Tests.Test_0(Count, myGPU);
 
-                            Tests.Test_1(myGPU, 1);
+                            Tests.Test_1(myGPU, 1,z);
                         }
 
                         Console.WriteLine("Cleaning up...");

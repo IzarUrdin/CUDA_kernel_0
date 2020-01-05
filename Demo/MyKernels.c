@@ -38,7 +38,7 @@ extern "C"
 		{
 			var = var + 1; //total number of executions			
 		}
-		*max = var;
+		*max += var;
 	}
 
 }

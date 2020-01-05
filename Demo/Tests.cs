@@ -8,32 +8,35 @@ namespace Demo
 {
     class Tests
     {
-        public static void Test_1(GPU myGPU, long tests, int n = 90000000)
+        public static void Test_1(GPU myGPU, long tests, int n = 1000000)
         {
             
             myGPU.PrepareExecution();
             long result = 0;
             var startTime = DateTime.Now;
+            var endTime = DateTime.Now;
             for (int i = 0; i < tests; i++)
             {
+                startTime = DateTime.Now;
                 result = myGPU.ParallelFor(n); // each thread in each block iterates n 
+                myGPU.Synchronize();
+                endTime = DateTime.Now;
+                Console.WriteLine("Operations : " + result + " in " + (result / n) + " threads in " + (endTime - startTime).TotalMilliseconds + " ms.");
+                Console.WriteLine(ToInt(tests * result / ((endTime - startTime).TotalMilliseconds * 1000)) + " MM operations per second in GPU");
             }
-            myGPU.Synchronize();
-            var endTime = DateTime.Now;
-            Console.WriteLine("Operations : " + result + " in " + (result/n) + " threads in " + (endTime - startTime).TotalMilliseconds + " ms.");
-            Console.WriteLine(ToInt(tests * result / ((endTime - startTime).TotalMilliseconds * 1000)) + " MM operations per second in GPU");
 
-            long max = 0;
-            startTime = DateTime.Now;
-            for (long t = 0; t < tests; t++)
-            {
-                for (long i = 0; i < result + 1; i++)
-                {
-                    max = max + 1; //total number of executions
-                }
-            }
-            endTime = DateTime.Now;
-            Console.WriteLine(ToInt(tests * max / ((endTime - startTime).TotalMilliseconds * 1000)) + " MM operations per second in CPU");
+           
+            //for (long t = 0; t < tests; t++)
+            //{
+            //    long max = 0;
+            //    startTime = DateTime.Now;
+            //    for (long i = 0; i < result + 1; i++)
+            //    {
+            //        max = max + 1; //total number of executions
+            //    }
+            //    endTime = DateTime.Now;
+            //    Console.WriteLine(ToInt(tests * max / ((endTime - startTime).TotalMilliseconds * 1000)) + " MM operations per second in CPU");
+            //}
 
             // Console.ReadKey();
 
