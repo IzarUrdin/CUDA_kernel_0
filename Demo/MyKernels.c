@@ -30,15 +30,15 @@ extern "C"
 		}
 	}
 
-	__device__ int var;
+	__device__ long var;
 
-	__global__ void ParallelFor(const long N, int* max)
+	__global__ void ParallelFor(const long N, long* max)
 	{
-		for (int i = 0; i < N; i ++)
+		for (long i = 0; i < N; i++)
 		{
-			var = var+1; //total number of executions			
+			var = var + 1; //total number of executions			
 		}
-		max = &var;
+		*max = var;
 	}
 
 }

@@ -128,7 +128,7 @@ namespace Demo
             result.CopyToDevice(new int[] { -1 });
 
             parallelFor.Run(new object[]
-                    { count, result.DevicePointer});
+                    { value, result.DevicePointer});
 
             long[] returned = new long[1];
             result.CopyToHost(returned);

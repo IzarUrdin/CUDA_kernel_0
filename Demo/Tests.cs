@@ -8,7 +8,7 @@ namespace Demo
 {
     class Tests
     {
-        public static void Test_1(GPU myGPU, long tests, long n = 30000000)
+        public static void Test_1(GPU myGPU, long tests, int n = 90000000)
         {
             
             myGPU.PrepareExecution();
@@ -16,18 +16,18 @@ namespace Demo
             var startTime = DateTime.Now;
             for (int i = 0; i < tests; i++)
             {
-                result = myGPU.ParallelFor(n); // each thread in each block iterates 30MM 
+                result = myGPU.ParallelFor(n); // each thread in each block iterates n 
             }
             myGPU.Synchronize();
             var endTime = DateTime.Now;
-            Console.WriteLine("Operations : " + result + " in " + (result/n) + " threads." );
+            Console.WriteLine("Operations : " + result + " in " + (result/n) + " threads in " + (endTime - startTime).TotalMilliseconds + " ms.");
             Console.WriteLine(ToInt(tests * result / ((endTime - startTime).TotalMilliseconds * 1000)) + " MM operations per second in GPU");
 
             long max = 0;
             startTime = DateTime.Now;
-            for (long  t = 0; t < tests; t++)
+            for (long t = 0; t < tests; t++)
             {
-                for (long  i = 0; i < result+1; i++)
+                for (long i = 0; i < result + 1; i++)
                 {
                     max = max + 1; //total number of executions
                 }
@@ -35,7 +35,7 @@ namespace Demo
             endTime = DateTime.Now;
             Console.WriteLine(ToInt(tests * max / ((endTime - startTime).TotalMilliseconds * 1000)) + " MM operations per second in CPU");
 
-            Console.ReadKey();
+            // Console.ReadKey();
 
         }
 
