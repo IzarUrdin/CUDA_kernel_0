@@ -1,6 +1,6 @@
 # Is a GPU really more powerfull than a CPU? 
 
-Copied from my question at [Stackoverflow](https://stackoverflow.com/questions/59567162/is-a-gpu-really-more-powerfull-than-a-cpu) on 2nd, January of 2020th. [closed by CUDA inquisitors]
+Copied from my question at [Stackoverflow](https://stackoverflow.com/questions/59567162/is-a-gpu-really-more-powerfull-than-a-cpu) on 2nd of January 2020. [closed by CUDA inquisitors]
 
 I have done a test using CUDA with my laptop. Using the CPU (i7 6700HQ) is at least 20 times more powerful than the 65,000 processors of the GEFORCE 940M inside. While with CUDA it takes about 20 seconds to find 50,000 items over a set of 1 million, the CPU does it in less than 1 second.
 
