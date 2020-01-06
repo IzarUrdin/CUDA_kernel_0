@@ -21,8 +21,8 @@ extern "C"
 		}
 	}
 
-	__global__ void FindFirst(const int items_count, ValueIdItem* data, long target, int* pFound)
-	{										
+	__global__ void FindFirst(ValueIdItem* data, long target, int* pFound)
+	{		
 		if (*pFound < 0)
 		{
 			int i = blockIdx.x * blockDim.x + threadIdx.x;

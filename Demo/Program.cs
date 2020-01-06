@@ -30,12 +30,17 @@ namespace Demo
                     Console.WriteLine($"{i}: {CudaContext.GetDeviceName(i)}");
                 }
 
-                for (int z = 100000; z < 100000*3000; z = z*2)
+                bool GoOn = true;
+
+                while (GoOn)
                 {
-                    for (int a = 1; a < 2; a++)
+                    //for (int z = 100000; z < 100000*3000; z = z*2)
+                    //{
+                    long z = 50000000;
+                    for (int a = 2; a < 3; a++)
                     {
-                        Console.WriteLine($"GridDim:{a} n:{z/1000000} MM");
-                        using (var myGPU = new GPU(deviceId: 0, _count: 1024*a))
+                        Console.WriteLine($"GridDim:{a} n:{z / 1000000} MM");
+                        using (var myGPU = new GPU(deviceId: 0, _count: 1024 * a))
                         {
                             // Console.WriteLine("Initializing kernel...");
                             string log;
@@ -51,22 +56,26 @@ namespace Demo
 
                             //Tests.Test_0(Count, myGPU);
 
-                            Tests.Test_1(myGPU, 1,z);
+                            Tests.Test_1(myGPU, 1, z);
+
+                            //Tests.Test_2(z, myGPU);
                         }
 
                         Console.WriteLine("Cleaning up...");
                     }
                     //     Console.ReadKey();
-                }
+                    //}
 
-                Console.WriteLine("All done; have a nice day");
-               
+                    Console.WriteLine("All done; ESC to exit any key to repeat :)");
+                    var k = Console.ReadKey();
+                    GoOn = k.Key.ToString() != Keys.Escape.ToString();
+                }
             } catch(Exception ex)
             {
                 Console.Error.WriteLine(ex.Message);
               
             }
-            Console.ReadLine();
+           
             return 0;
         }
 

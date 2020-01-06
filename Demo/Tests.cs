@@ -8,9 +8,9 @@ namespace Demo
 {
     class Tests
     {
-        public static void Test_1(GPU myGPU, long tests, int n = 1000000)
+        public static void Test_1(GPU myGPU, long tests, long n = 1000000)
         {
-            
+
             myGPU.PrepareExecution();
             long result = 0;
             var startTime = DateTime.Now;
@@ -25,7 +25,7 @@ namespace Demo
                 Console.WriteLine(ToInt(tests * result / ((endTime - startTime).TotalMilliseconds * 1000)) + " MM operations per second in GPU");
             }
 
-           
+
             //for (long t = 0; t < tests; t++)
             //{
             //    long max = 0;
@@ -47,6 +47,65 @@ namespace Demo
             return (long)v;
         }
 
+
+        public static void Test_2(int Count, GPU myGPU)
+        {
+            Console.WriteLine("Initializing data...");
+            myGPU.InitializeData(Count);
+            var tests = 100000;
+            myGPU.PrepareExecution();
+            var random = new Random(123456);
+            ValueIdItem[] randoms = new ValueIdItem[tests];
+           
+            for (int i = 0; i < tests; i++)
+            {
+                long z = random.Next(Count - 1);
+                try
+                {
+                    randoms[i] = myGPU[z];
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            var startTime = DateTime.Now;
+            for (int i = 0; i < tests; i++)
+            {                
+                var result = myGPU.FindFirst(myGPU[i].Value);
+            }
+            var endTime = DateTime.Now;
+
+            Console.WriteLine("GPU test done:");
+            Console.WriteLine(tests / ((endTime - startTime).TotalSeconds) + " matchins per second !");
+
+
+            Dictionary<long, long> DiRecs = new Dictionary<long, long>();
+
+            try
+            {
+                for (int i = 0; i < Count; i++)
+                {
+                    DiRecs.Add(i, myGPU[i].Value);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            startTime = DateTime.Now;
+            for (int i = 0; i < tests; i++)
+            {
+                var result = DiRecs[randoms[i].Id];
+            }
+            endTime = DateTime.Now;
+
+            Console.WriteLine("CPU test done:");
+            Console.WriteLine((tests / ((endTime - startTime).TotalMilliseconds+0.0001))*1000 + " matchins per second !");
+
+        }
         public static void Test_0(int Count, GPU myGPU)
         {
             Console.WriteLine("Initializing data...");

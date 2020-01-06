@@ -125,7 +125,7 @@ namespace Demo
 
         internal long ParallelFor(long value)
         {
-            result.CopyToDevice(new int[] { -1 });
+            result.CopyToDevice(new long[] { 0 });
 
             parallelFor.Run(new object[]
                     { value, result.DevicePointer});
@@ -137,23 +137,15 @@ namespace Demo
         internal long FindFirst(long value)
         {
 
-            result.CopyToDevice(new int[] { -1 });
+            result.CopyToDevice(new long[] { -1 });
 
             // invoke the kernel 
             findFirst.Run(new object[]
-                    { count, deviceBuffer.DevicePointer, value,result.DevicePointer});
-            //findFirst.RunAsync
-            //    (
-            //      defaultStream.Stream, 
-            //      new object[] 
-            //        { count, deviceBuffer.DevicePointer, value,result.DevicePointer}
-            //    );
+                    { deviceBuffer.DevicePointer, value, result.DevicePointer});
 
-            //int[] returned = new int[1];
-
-            //result.CopyToHost(returned);
-            //return returned[0];
-            return 1;
+            long[] returned = new long[1];
+            result.CopyToHost(returned);
+            return returned[0];
         }
         internal void MultiplyAsync(int value)
         {
